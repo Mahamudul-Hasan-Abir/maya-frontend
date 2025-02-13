@@ -6,7 +6,7 @@ const CategoryCard = ({ category }: { category: TCategory }) => {
     <div className="w-full ">
       <div className=" flex justify-center">
         <Image
-          src={category?.image[0].original}
+          src={category?.image[0]?.original}
           alt={category?.name}
           height={220}
           width={220}

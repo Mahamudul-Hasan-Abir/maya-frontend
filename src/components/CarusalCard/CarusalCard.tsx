@@ -1,14 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { TProduct } from "@/types";
 
+import Image from "next/image";
+
 const CarusalCard = ({ product }: { product: TProduct }) => {
   return (
-    <div className="relative  flex-shrink-0 w-full sm:w-auto">
-      <div className="bg-[#F4F4F4] rounded-2xl flex justify-center items-center">
-        <img
-          className="object-cover rounded-2xl h-[307px] w-full  object-center dark:bg-gray-500  aspect-square"
-          src={product?.image.original}
+    <div className="relative flex-shrink-0 w-full sm:w-auto">
+      <div className="bg-[#F4F4F4] rounded-2xl h-[307px] flex justify-center items-center">
+        <Image
+          className="rounded-2xl h-full  w-full  object-center dark:bg-gray-500  aspect-square"
+          src={product?.image?.original}
           alt="Image 1"
+          width={220}
+          height={220}
         />
       </div>
       <div className="mt-2">

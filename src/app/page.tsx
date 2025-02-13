@@ -1,9 +1,11 @@
 import BigImage from "@/components/BigImage/BigImage";
 import Carusal from "@/components/Carusal/Carusal";
 import Category from "@/components/Category/Category";
+import Footer from "@/components/Footer/Footer";
 
 import Hero from "@/components/Hero/Hero";
 import HeroFooter from "@/components/HeroFooter/HeroFooter";
+import ShopByConcern from "@/components/ShopByConcern/ShopByConcern";
 import TipsTricks from "@/components/Tips&Tricks/TipsTricks";
 
 export const revalidateTime = 6;
@@ -29,6 +31,8 @@ const Home = async () => {
       <Category key={categories.id} categories={categories}></Category>
       <BigImage></BigImage>
       <TipsTricks></TipsTricks>
+      <ShopByConcern></ShopByConcern>
+      <Footer></Footer>
     </div>
   );
 };

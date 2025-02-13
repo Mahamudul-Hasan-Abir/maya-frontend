@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type Image = {
   id: number;
@@ -103,3 +105,12 @@ export interface CatagoryApiResponse {
   last_page_url: string;
   first_page_url: string;
 }
+export type TipImage = {
+  id: number;
+  url: string | StaticImageData;
+};
+export type ShopImage = {
+  id: number;
+  url: string | StaticImageData;
+  message: string;
+};
