@@ -10,7 +10,7 @@ import { useState } from "react";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="w-full relative bg-primary text-gray-100 body-font shadow-sm">
+    <header className="w-full relative bg-[#004B47] text-gray-100 body-font shadow-sm">
       {/* :DESKTOP MENU */}
       <div className="mx-auto relative md:px-24 w-full h-[44px] flex justify-between items-center  px-5">
         {/* Site logo and Name */}
