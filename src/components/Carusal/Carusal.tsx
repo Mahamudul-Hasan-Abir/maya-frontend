@@ -2,15 +2,12 @@ import { TProduct } from "@/types";
 import CarusalCard from "../CarusalCard/CarusalCard";
 
 const Carusal = ({ products }: { products: TProduct[] }) => {
-  if (products) {
-    console.log(products);
-  }
   return (
     <div className="relative flex items-center justify-center w-full dark:text-gray-900">
       <button
         aria-label="Slide back"
         type="button"
-        className="absolute left-0 z-30 p-2 ml-10 bg-opacity-50 rounded-full focus:outline-none focus:dark:bg-gray-600 focus:ring-2 focus:ring-offset-2 focus:dark:ring-gray-600 dark:bg-gray-50"
+        className="absolute left-0 z-30 p-2 ml-16 bg-opacity-50 rounded-full focus:outline-none focus:dark:bg-gray-600 focus:ring-2 focus:ring-offset-2 focus:dark:ring-gray-600 dark:bg-gray-50"
       >
         <svg
           width="8"
@@ -37,7 +34,7 @@ const Carusal = ({ products }: { products: TProduct[] }) => {
       <button
         aria-label="Slide forward"
         id="next"
-        className="absolute right-0 z-30 p-2 mr-10 bg-opacity-50 rounded-full focus:outline-none focus:dark:bg-gray-600 focus:ring-2 focus:ring-offset-2 focus:dark:ring-gray-600 dark:bg-gray-50"
+        className="absolute right-0 z-30 p-2 mr-16 bg-opacity-50 rounded-full focus:outline-none focus:dark:bg-gray-600 focus:ring-2 focus:ring-offset-2 focus:dark:ring-gray-600 dark:bg-gray-50"
       >
         <svg
           width="8"

@@ -1,8 +1,6 @@
 import BigImage from "@/components/BigImage/BigImage";
 import Carusal from "@/components/Carusal/Carusal";
-import Category from "@/components/Category/Category";
-import Footer from "@/components/Footer/Footer";
-
+import CategoryCarusal from "@/components/CategoryCarusal/CategoryCarusal";
 import Hero from "@/components/Hero/Hero";
 import HeroFooter from "@/components/HeroFooter/HeroFooter";
 import ShopByConcern from "@/components/ShopByConcern/ShopByConcern";
@@ -28,11 +26,10 @@ const Home = async () => {
       <Hero></Hero>
       <HeroFooter></HeroFooter>
       <Carusal products={products}></Carusal>
-      <Category key={categories.id} categories={categories}></Category>
+      <CategoryCarusal categories={categories}></CategoryCarusal>
       <BigImage></BigImage>
       <TipsTricks></TipsTricks>
       <ShopByConcern></ShopByConcern>
-      <Footer></Footer>
     </div>
   );
 };
