@@ -4,6 +4,7 @@ import CategoryCarusal from "@/components/CategoryCarusal/CategoryCarusal";
 import Hero from "@/components/Hero/Hero";
 import HeroFooter from "@/components/HeroFooter/HeroFooter";
 import ShopByConcern from "@/components/ShopByConcern/ShopByConcern";
+
 import TipsTricks from "@/components/Tips&Tricks/TipsTricks";
 
 export const revalidateTime = 6;

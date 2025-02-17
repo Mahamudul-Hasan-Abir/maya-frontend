@@ -6,13 +6,15 @@ import Image from "next/image";
 const CarusalCard = ({ product }: { product: TProduct }) => {
   return (
     <div className="relative flex-shrink-0 w-full sm:w-auto">
-      <div className="bg-[#F4F4F4] rounded-2xl h-[307px] flex justify-center items-center">
+      <div className="bg-[#F4F4F4] rounded-2xl h-[330px] w-[330px] flex justify-center items-center">
         <Image
-          className="rounded-2xl h-full  w-full  object-center dark:bg-gray-500  aspect-square"
+          className="rounded-2xl h-full w-full object-center dark:bg-gray-500  "
           src={product?.image?.original}
           alt="Image 1"
-          width={220}
-          height={220}
+          sizes="(max-width: 768px) 100vw"
+          quality={100}
+          width={1600}
+          height={900}
         />
       </div>
       <div className="mt-2">
