@@ -12,7 +12,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
 
   return (
     <Link
-      href={`/allproducts/${product.id}`}
+      href={`/search/${product.id}`}
       className="relative flex-shrink-0 w-full sm:w-auto"
     >
       <div className="bg-[#F4F4F4] rounded-2xl h-[307px] flex justify-center items-center">

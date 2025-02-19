@@ -198,7 +198,7 @@ const Products = async () => {
               <div>
                 <Accordion type="single" collapsible className="relative">
                   <AccordionItem value="item-1 relative">
-                    <AccordionTrigger className="text-base font-semibold border  px-3 rounded-md text-[#004B47]">
+                    <AccordionTrigger className="text-base font-semibold border  px-2  rounded-md text-[#004B47]">
                       Sorting Options
                     </AccordionTrigger>
                     <AccordionContent className=" bg-white w-[160px] bottom-[-155px] shadow-sm border-[1px] z-10 rounded-md p-2 absolute flex flex-col gap-2">
