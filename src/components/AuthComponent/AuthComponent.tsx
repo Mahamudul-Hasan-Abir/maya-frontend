@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,24 +10,118 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import userLogo from "../../../assents/NavBar/userLogo.png";
+import toast from "react-hot-toast";
 
-const AuthComponent = () => {
+interface AuthComponentProps {
+  isOpen: boolean;
+  onClose: (open: boolean) => void;
+}
+
+const AuthComponent = ({ isOpen, onClose }: AuthComponentProps) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/search";
+
   const [registerComponent, setRegisterComponent] = useState(false);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Extract form values manually
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement)
+      ?.value;
+
+    // Construct JSON payload in the exact format
+    const data = {
+      name: name,
+      email: email,
+      password: password,
+      permission: "store_owner", // Extra field
+    };
+    console.log(data);
+    try {
+      const response = await fetch("https://api-maya.nusratech.com/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (result.token) {
+        onClose(false);
+        localStorage.setItem("authToken", result.token);
+        router.push(redirect ? redirect : "/search");
+        toast.success("Successfully Registered");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      if (error.status == "422") {
+        toast.error("Something Went Wrong");
+      }
+    }
+  };
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+
+    const email = (form.elements.namedItem("loginemail") as HTMLInputElement)
+      ?.value;
+    const password = (
+      form.elements.namedItem("loginpassword") as HTMLInputElement
+    )?.value;
+
+    const data = {
+      email: email,
+      password: password,
+    };
+    console.log(data);
+    try {
+      const response = await fetch("https://api-maya.nusratech.com/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log(result);
+      if (result.token) {
+        localStorage.setItem("authToken", result.token);
+        onClose(false);
+        toast.success("Successfully loggedin");
+
+        router.push(redirect ? redirect : "/search");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      if (error.status == "422") {
+        toast.error("Something Went Wrong");
+      }
+    }
+  };
   return (
     <div>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogTrigger asChild>
           <Image src={userLogo} className="size-[18px]" alt="user logo" />
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           {registerComponent ? (
             /** Register Form */
-            <>
+            <form onSubmit={handleSubmit}>
               <DialogHeader>
                 <DialogTitle className="text-center text-[#004B47]">
                   Register
@@ -42,13 +137,19 @@ const AuthComponent = () => {
                   <Label htmlFor="name" className="text-left font-bold">
                     Name:
                   </Label>
-                  <Input id="name" type="text" placeholder="Your Name" />
+                  <Input
+                    name="name"
+                    id="name"
+                    type="text"
+                    placeholder="Your Name"
+                  />
                 </div>
                 <div className="grid grid-cols-1 items-center gap-4">
                   <Label htmlFor="email" className="text-left font-bold">
                     Email:
                   </Label>
                   <Input
+                    name="email"
                     id="email"
                     type="email"
                     placeholder="you@example.com"
@@ -58,7 +159,12 @@ const AuthComponent = () => {
                   <Label htmlFor="password" className="text-left font-semibold">
                     Password:
                   </Label>
-                  <Input id="password" type="password" placeholder="••••••••" />
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="••••••••"
+                  />
                 </div>
               </div>
               <DialogFooter>
@@ -89,10 +195,10 @@ const AuthComponent = () => {
                   Login
                 </span>
               </p>
-            </>
+            </form>
           ) : (
             /** Login Form */
-            <>
+            <form onSubmit={handleLogin}>
               <DialogHeader>
                 <DialogTitle className="text-center text-[#004B47]">
                   Login
@@ -107,7 +213,7 @@ const AuthComponent = () => {
                     Email:
                   </Label>
                   <Input
-                    id="email"
+                    id="loginemail"
                     type="email"
                     placeholder="you@example.com"
                   />
@@ -116,7 +222,11 @@ const AuthComponent = () => {
                   <Label htmlFor="password" className="text-left font-semibold">
                     Password:
                   </Label>
-                  <Input id="password" type="password" placeholder="••••••••" />
+                  <Input
+                    id="loginpassword"
+                    type="password"
+                    placeholder="••••••••"
+                  />
                 </div>
               </div>
               <DialogFooter>
@@ -147,7 +257,7 @@ const AuthComponent = () => {
                   Register
                 </span>
               </p>
-            </>
+            </form>
           )}
         </DialogContent>
       </Dialog>

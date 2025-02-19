@@ -11,6 +11,7 @@ const NavBar = () => {
   const { toggleCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   return (
     <header className="w-full relative bg-[#004B47] text-gray-100 body-font shadow-sm">
       <div className="mx-auto relative md:px-24 w-full h-[44px] flex justify-between items-center px-5">
@@ -46,7 +47,7 @@ const NavBar = () => {
             className="size-[18px]"
             alt="cart logo"
           />
-          <AuthComponent></AuthComponent>
+          <AuthComponent isOpen={isAuthOpen} onClose={setIsAuthOpen} />
         </div>
 
         {/* Mobile Menu Button */}
@@ -101,7 +102,7 @@ const NavBar = () => {
           <div className="flex justify-center gap-6">
             <Image src={searchLogo} className="size-[18px]" alt="search logo" />
             <Image src={cartLogo} className="size-[18px]" alt="cart logo" />
-            <AuthComponent></AuthComponent>
+            <AuthComponent isOpen={isAuthOpen} onClose={setIsAuthOpen} />
           </div>
         </div>
       )}

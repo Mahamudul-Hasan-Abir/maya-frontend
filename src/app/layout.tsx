@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 import { CartProvider } from "@/Context/CartContext/CartContext";
 import Cart from "@/components/Cart/Cart";
@@ -36,6 +37,7 @@ export default function RootLayout({
           <NavBar></NavBar>
           <Cart></Cart>
           {children}
+          <Toaster></Toaster>
           <Footer></Footer>
         </CartProvider>
       </body>
