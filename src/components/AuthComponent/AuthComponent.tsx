@@ -15,7 +15,7 @@ import Image from "next/image";
 import userLogo from "../../../assents/NavBar/userLogo.png";
 
 const AuthComponent = () => {
-  const [registerComponent, setRegisterComponent] = useState(true);
+  const [registerComponent, setRegisterComponent] = useState(false);
 
   return (
     <div>

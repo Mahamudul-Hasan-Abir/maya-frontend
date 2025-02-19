@@ -6,8 +6,9 @@ import mayaLogo from "../../../assents/Logo.png";
 import searchLogo from "../../../assents/NavBar/searchLogo.png";
 import cartLogo from "../../../assents/NavBar/cartLogo.png";
 import AuthComponent from "../AuthComponent/AuthComponent";
-
+import { useCart } from "@/Context/CartContext/CartContext";
 const NavBar = () => {
+  const { toggleCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -39,7 +40,12 @@ const NavBar = () => {
         {/* Search and Cart Icons */}
         <div className="hidden md:flex justify-between w-[10%] sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
           <Image src={searchLogo} className="size-[20px] " alt="search logo" />
-          <Image src={cartLogo} className="size-[18px]" alt="cart logo" />
+          <Image
+            onClick={toggleCart}
+            src={cartLogo}
+            className="size-[18px]"
+            alt="cart logo"
+          />
           <AuthComponent></AuthComponent>
         </div>
 

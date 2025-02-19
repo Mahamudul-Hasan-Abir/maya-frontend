@@ -4,6 +4,7 @@ import test from "../../../assents/ProductDetails/test.png";
 
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
+
 import {
   Accordion,
   AccordionContent,
@@ -13,14 +14,14 @@ import {
 import { LittleImageData, TSingleProductResponse } from "@/types";
 import { useState } from "react";
 import ProductCartCard from "../ProductCartCard/ProductCartCard";
-
+import { useCart } from "@/Context/CartContext/CartContext";
 const ProductDetailsCard = ({
   productDetails,
 }: {
   productDetails: TSingleProductResponse;
 }) => {
   const [quantity, setQuantity] = useState(0);
-
+  const { toggleCart } = useCart();
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
     console.log("Increase Clicked");
@@ -118,8 +119,8 @@ const ProductDetailsCard = ({
             </div>
 
             <label
-              htmlFor="my-drawer-4"
               className="drawer-button px-6 py-3 bg-[#004B47] rounded-xl text-white"
+              onClick={toggleCart}
             >
               Add to Cart
             </label>
